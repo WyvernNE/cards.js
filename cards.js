@@ -6,7 +6,7 @@ var cards = (function() {
 		animationSpeed : 500,
 		table : 'body',
 		cardback : 'red',
-		acesHigh : false,
+		acesHigh : true,
 		cardsUrl : 'img/cards.png',
 		blackJoker : false,
 		redJoker : false
@@ -32,8 +32,9 @@ var cards = (function() {
 				}
 			}
 		}
-		var start = opt.acesHigh ? 2 : 1;
-		var end = start + 12;
+		//36 card game
+		var start = opt.acesHigh ? 6 : 5;
+		var end = start + 8;
 		opt.table = $(opt.table)[0];
 		if ($(opt.table).css('position') == 'static') {
 			$(opt.table).css('position', 'relative');
@@ -286,6 +287,7 @@ var cards = (function() {
 	Hand.prototype = new Container();
 	Hand.prototype.extend({
 		calcPosition : function(options) {
+			//if no options are given, transform options into empty object 
 			options = options || {};
 			var width = opt.cardSize.width + (this.length-1)*opt.cardSize.padding;
 			var left = Math.round(this.x - width/2);
